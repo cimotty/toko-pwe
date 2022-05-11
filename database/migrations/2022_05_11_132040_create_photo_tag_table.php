@@ -13,11 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('albums', function (Blueprint $table) {
-            $table->id();
-            $table->string('judul',120);
-            $table->string('penjelasan')->nullable();
-            $table->integer('view')->default(0);
+        Schema::create('photo_tag', function (Blueprint $table) {
+            $table->unsignedBigInteger('tagID');
+            $table->unsignedBigInteger('photoID');
+
+            $table->foreign('tagID')->references('id')->on('tags')->onDelete('cascade');
+            $table->foreign('photoID')->references('id')->on('photos')->onDelete('cascade');
         });
     }
 
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('albums');
+        Schema::dropIfExists('photo_tag');
     }
 };

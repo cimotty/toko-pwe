@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('albums', function (Blueprint $table) {
+        Schema::create('locations', function (Blueprint $table) {
             $table->id();
-            $table->string('judul',120);
-            $table->string('penjelasan')->nullable();
-            $table->integer('view')->default(0);
+            $table->string('nama',200);
+            $table->string('namaPanggilan',50);
         });
     }
 
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('albums');
+        Schema::dropIfExists('locations');
     }
 };
